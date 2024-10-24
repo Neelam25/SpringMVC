@@ -1,0 +1,33 @@
+# Use the latest 2.1 version of CircleCI pipeline process engine.
+version: 2.1
+
+jobs:
+  build:
+    working_directory: ~/circleci-springbootMVC
+    docker:
+      - image: circleci/openjdk:22  # Using OpenJDK 22 for your Spring Boot app
+      - image: circleci/mysql:5.7    # MySQL Docker image
+        environment:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: springjdbc
+          MYSQL_USER: root
+          MYSQL_PASSWORD: Test@123
+
+    steps:
+      - checkout
+      - - run:
+            name: Install Maven
+            command: sudo apt-get install maven -y  # Install Maven if not included
+      - run:
+          name: Build Application
+          command: mvn -B -DskipTests clean package # Build without running tests
+
+workflows:
+  version: 2.1
+  build:
+    jobs:
+      - build:
+         filters:
+          branches:
+            only:
+              - develop-circleci  # Change this to your default branch name

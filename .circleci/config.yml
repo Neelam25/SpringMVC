@@ -15,9 +15,9 @@ jobs:
 
     steps:
       - checkout
-      - - run:
-            name: Install Maven
-            command: sudo apt-get install maven -y  # Install Maven if not included
+      - run:
+          name: Install Maven
+          command: sudo apt-get install maven -y  # Install Maven if not included
       - run:
           name: Build Application
           command: mvn -B -DskipTests clean package # Build without running tests
@@ -30,4 +30,4 @@ workflows:
          filters:
           branches:
             only:
-              - develop-circleci  # Change this to your default branch name
+              - main  # Change this to your default branch name

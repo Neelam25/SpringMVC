@@ -5,7 +5,7 @@ jobs:
   build:
     working_directory: ~/circleci-springbootMVC
     docker:
-      - image: circleci/openjdk:22  # Using OpenJDK 22 for your Spring Boot app
+      - image: circleci/openjdk:17  # Using OpenJDK 17 for your Spring Boot app
       - image: circleci/mysql:5.7    # MySQL Docker image
         environment:
           MYSQL_ROOT_PASSWORD: root

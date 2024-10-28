@@ -3,7 +3,7 @@ version: 2.1
 executors:
   spring-executor:
     docker:
-      - image: cimg/openjdk:17
+      - image: cimg/openjdk:17.0
 jobs:
   build:
     executor: spring-executor

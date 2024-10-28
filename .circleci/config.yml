@@ -1,17 +1,14 @@
 # Use the latest 2.1 version of CircleCI pipeline process engine.
 version: 2.1
-
+executors:
+  spring-executor:
+    docker:
+      - image: cimg/openjdk:17
 jobs:
   build:
-    working_directory: ~/circleci-springbootMVC
-    docker:
-      - image: cimg/openjdk:17  # Using OpenJDK 17 for your Spring Boot app
-
+    executor: spring-executor
     steps:
       - checkout
-      - run:
-          name: Install Maven
-          command: sudo apt-get install maven -y  # Install Maven if not included
       - run:
           name: Build Application
           command: mvn -B -DskipTests clean package # Build without running tests
